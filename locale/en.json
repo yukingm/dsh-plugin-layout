@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Plugin Layout",
+    "description": "Scans the entries plugins add to the sidebar, header, and settings, then shows, hides, or reorders each one."
+  }
+}

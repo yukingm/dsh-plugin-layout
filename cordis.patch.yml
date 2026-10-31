@@ -1,0 +1,3 @@
+- insert:
+    - id: plugin-layout
+      name: dsh-plugin-layout

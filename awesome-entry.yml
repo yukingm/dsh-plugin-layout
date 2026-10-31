@@ -1,0 +1,10 @@
+# Submission entry for awesome-dsh-plugin.
+# Copy to data/plugins/yukingm__dsh-plugin-layout.yml in that repository.
+# See PUBLISHING.md.
+url: https://github.com/yukingm/dsh-plugin-layout
+name: yukingm/dsh-plugin-layout
+category: ui
+description:
+  en: Hide, show, and reorder the entries other plugins register into the DeepSeek Harness sidebar, session header, and settings.
+  zh: 扫描插件在侧栏、标题栏、设置里挂的入口, 逐条隐藏、显示或排序。
+icon: https://raw.githubusercontent.com/yukingm/dsh-plugin-layout/main/assets/icon-180.png

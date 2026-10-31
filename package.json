@@ -1,0 +1,61 @@
+{
+  "name": "dsh-plugin-layout",
+  "version": "0.1.0",
+  "description": "Hide, show, and reorder the entries other plugins register into the DeepSeek Harness sidebar, session header, and settings. 扫描插件挂在侧栏、标题栏、设置里的入口, 逐条隐藏、显示、排序.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "assets",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "layout",
+    "sidebar",
+    "ui"
+  ],
+  "engines": {
+    "dsh": ">=0.2.0-rc.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yukingm/dsh-plugin-layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yukingm/dsh-plugin-layout/issues"
+  },
+  "homepage": "https://github.com/yukingm/dsh-plugin-layout#readme",
+  "author": "yukingm",
+  "license": "MIT",
+  "scripts": {
+    "test": "node test/harness.mjs",
+    "check": "node --check index.js && node --check client.js"
+  }
+}

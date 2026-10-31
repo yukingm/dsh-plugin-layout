@@ -68,13 +68,40 @@ the UI.
 
 ## Install
 
+The package is not on npm yet, so install it from GitHub:
+
 ```bash
-dsh plugin add dsh-plugin-layout
+dsh plugin --profile desktop add github:yukingm/dsh-plugin-layout
 ```
 
-While developing, point `dsh plugin add` at the folder itself. After enabling,
-restart the desktop app once so the Client bundle is loaded; from then on the
-layout page reflects plugin changes without an app restart.
+Pin a tagged release instead of following `main`:
+
+```bash
+dsh plugin --profile desktop add github:yukingm/dsh-plugin-layout#v0.1.0
+```
+
+`dsh plugin` forwards its arguments to `pnpm` inside the profile directory, so
+any pnpm specifier works (`github:owner/repo#tag`, `file:path`, a published
+package name). The command adds the dependency to the profile `package.json`
+and appends the package to `dsh.profile.bundles`.
+
+Then restart the desktop app once: the Client half (`client.js`) is a browser
+bundle that is loaded at startup. Afterwards open **设置 → 插件布局**
+(Settings → Plugin layout).
+
+Uninstall:
+
+```bash
+dsh plugin --profile desktop remove dsh-plugin-layout
+```
+
+While developing, install the working tree itself. pnpm links the folder, so a
+later edit to `client.js` is picked up by the client HMR watcher and only the
+first install needs the app restart:
+
+```bash
+dsh plugin --profile desktop add E:\my\code\dsh_plugin\dsh-plugin-layout
+```
 
 ## Development
 
@@ -106,6 +133,38 @@ without the desktop app.
 已知边界: 不支持把入口从一个插槽搬到另一个插槽(每个入口属于注册它的插件, 而且不同
 插槽传入的 props 不同); 只处理注册表里的入口, 插件自己在容器里画的东西管不到; 安装后
 需要重启一次应用才能加载 Client 部分。
+
+## 安装
+
+还没上 npm, 直接从 GitHub 装:
+
+```bash
+dsh plugin --profile desktop add github:yukingm/dsh-plugin-layout
+```
+
+要锁定版本就带上标签:
+
+```bash
+dsh plugin --profile desktop add github:yukingm/dsh-plugin-layout#v0.1.0
+```
+
+`dsh plugin` 把参数原样转给 profile 目录里的 `pnpm`, 所以 `github:`, `file:` 和
+npm 包名都行; 它会把依赖写进 profile 的 `package.json`, 并把本包加进
+`dsh.profile.bundles`。装完重启一次桌面应用(Client 部分是启动时加载的浏览器
+bundle), 之后打开 **设置 → 插件布局**。
+
+卸载:
+
+```bash
+dsh plugin --profile desktop remove dsh-plugin-layout
+```
+
+开发时直接装工作目录, pnpm 会做 link, 之后改 `client.js` 由 HMR 接管, 只有第一次
+安装需要重启:
+
+```bash
+dsh plugin --profile desktop add E:\my\code\dsh_plugin\dsh-plugin-layout
+```
 
 ## License
 
